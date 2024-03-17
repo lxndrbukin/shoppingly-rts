@@ -2,7 +2,7 @@ export enum Slices {
   Catalog = 'catalog'
 }
 
-export interface CatalogItem {
+export interface CatalogItemProps {
   id: number;
   sizes: Array<string>;
   img: string;
@@ -10,6 +10,6 @@ export interface CatalogItem {
   price: number;
 }
 
-export interface Catalog {
-  catalogItems: Array<CatalogItem>;
+export interface CatalogProps {
+  catalogItems: Array<CatalogItemProps>;
 }
