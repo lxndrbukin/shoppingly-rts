@@ -14,14 +14,13 @@ const catalogSlice = createSlice({
   initialState,
   reducers: {
     setSizes: (state: CatalogProps, action: PayloadAction<string>): void => {
-      let { sizes } = state.filter;
-      if (sizes.includes(action.payload)) {
-        const filteredSizes = sizes.filter((size: string) => {
+      if (state.filter.sizes.includes(action.payload)) {
+        const filteredSizes = state.filter.sizes.filter((size: string) => {
           return size !== action.payload;
         });
-        sizes = filteredSizes;
+        state.filter.sizes = filteredSizes;
       } else {
-        sizes = [...sizes, action.payload];
+        state.filter.sizes.push(action.payload);
       }
     }
   },

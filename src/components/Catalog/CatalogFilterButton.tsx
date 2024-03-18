@@ -14,18 +14,18 @@ export default function CatalogFilterButton({
     (state: RootState): { sizes: Array<string> } => state.catalog.filter
   );
 
-  const handleClick = (): void => {
+  const handleClick = (value: string): void => {
     dispatch(setSizes(value));
     if (!sizes.includes(value)) setIsActive(true);
     else setIsActive(false);
   };
 
   return (
-    <button
+    <input
+      type='submit'
       className={`filter-btn ${isActive ? 'active' : ''}`}
-      onClick={handleClick}
-    >
-      {value}
-    </button>
+      onClick={() => handleClick(value)}
+      value={value}
+    />
   );
 }

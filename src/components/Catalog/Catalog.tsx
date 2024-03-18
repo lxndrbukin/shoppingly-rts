@@ -7,12 +7,13 @@ import {
   AppDispatch,
   getCatalog,
 } from '../../store';
+import CatalogFilter from './CatalogFilter';
 import CatalogItem from './CatalogItem';
 
-export default function CatalogProps(): JSX.Element {
+export default function Catalog(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
 
-  const { catalogItems } = useSelector(
+  const { catalogItems, filter } = useSelector(
     (state: RootState): CatalogProps => state.catalog
   );
 
@@ -23,9 +24,17 @@ export default function CatalogProps(): JSX.Element {
   let content;
 
   if (catalogItems.length) {
-    const items = catalogItems.map((item: CatalogItemProps) => {
-      return <CatalogItem key={item.id} {...item} />;
-    });
+    const items = catalogItems
+      .filter((item: CatalogItemProps) => {
+        if (filter.sizes.length) {
+          return filter.sizes.some((size: string) => item.sizes.includes(size));
+        } else {
+          return item;
+        }
+      })
+      .map((item: CatalogItemProps) => {
+        return <CatalogItem key={item.id} {...item} />;
+      });
 
     content = <div className='catalog-items'>{items}</div>;
   }
@@ -33,6 +42,7 @@ export default function CatalogProps(): JSX.Element {
   return (
     <section className='catalog'>
       <h5 className='catalog-header'>{catalogItems.length} product(s) found</h5>
+      <CatalogFilter />
       {content}
     </section>
   );
