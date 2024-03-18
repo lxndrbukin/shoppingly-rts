@@ -29,10 +29,12 @@ export default function CatalogItem({
         </select>
       </div>
       <div className='item-name'>{name}</div>
-      <div className='item-price'>£{price.toFixed(2)}</div>
-      <button onClick={() => console.log('added')} className='item-add'>
-        Add to Cart
-      </button>
+      <div className='item-buy'>
+        <div className='item-price'>£{price.toFixed(2)}</div>
+        <button onClick={() => console.log('added')} className='item-add'>
+          <i className='fas fa-shopping-bag'></i>
+        </button>
+      </div>
     </div>
   );
 }
