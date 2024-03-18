@@ -20,7 +20,7 @@ export default function CatalogProps(): JSX.Element {
     dispatch(getCatalog());
   }, [dispatch]);
 
-  let content: JSX.Element;
+  let content;
 
   if (catalogItems.length) {
     const items = catalogItems.map((item: CatalogItemProps) => {
@@ -33,6 +33,7 @@ export default function CatalogProps(): JSX.Element {
   return (
     <section className='catalog'>
       <h5 className='catalog-header'>{catalogItems.length} product(s) found</h5>
+      {content}
     </section>
   );
 }

@@ -12,4 +12,7 @@ export interface CatalogItemProps {
 
 export interface CatalogProps {
   catalogItems: Array<CatalogItemProps>;
+  filter: {
+    sizes: Array<string>;
+  };
 }
