@@ -2,9 +2,15 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { getCatalog } from '../thunks/getCatalog';
 import { CatalogProps, CatalogItemProps, Slices } from './types';
 
+type Price = 'min' | 'max';
+
 const initialState: CatalogProps = {
   catalogItems: [],
   filter: {
+    price: {
+      min: 0,
+      max: 0
+    },
     sizes: []
   }
 };
@@ -13,6 +19,9 @@ const catalogSlice = createSlice({
   name: Slices.Catalog,
   initialState,
   reducers: {
+    setPrice: (state: CatalogProps, action: PayloadAction<{ min: number, max: number; }>): void => {
+      state.filter.price = action.payload;
+    },
     setSizes: (state: CatalogProps, action: PayloadAction<string>): void => {
       if (state.filter.sizes.includes(action.payload)) {
         const filteredSizes = state.filter.sizes.filter((size: string) => {

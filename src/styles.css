@@ -227,6 +227,8 @@ main {
   padding: var(--spacing-lg);
   border: 2px solid var(--grey);
   border-radius: 7px;
+  min-width: 225px;
+  box-sizing: border-box;
 }
 
 .filter-header {
@@ -235,15 +237,29 @@ main {
 
 .filter-prices-inputs {
   display: grid;
-  grid-template-columns: repeat(2, 65px);
+  grid-template-columns: repeat(2, 75px);
   gap: 10px;
 }
 
-.filter-prices-inputs input {
+.filter-prices-input-wrapper {
+  position: relative;
+}
+
+.filter-prices-input-wrapper span {
+  position: absolute;
+  color: var(--grey);
+  top: 3px;
+  left: 4px;
+  font-weight: bold;
+}
+
+.filter-prices-input-wrapper input {
   border: 1px solid var(--light-grey);
   border-radius: 7px;
   height: 25px;
   box-sizing: border-box;
+  padding-left: var(--spacing-lg);
+  width: 100%;
 }
 
 .filter-prices-inputs input:focus {
@@ -257,7 +273,7 @@ main {
 
 .filter-sizes-btns {
   display: grid;
-  grid-template-columns: repeat(2, 65px);
+  grid-template-columns: repeat(2, 75px);
   gap: 10px;
 }
 

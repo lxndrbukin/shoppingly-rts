@@ -13,6 +13,10 @@ export interface CatalogItemProps {
 export interface CatalogProps {
   catalogItems: Array<CatalogItemProps>;
   filter: {
+    price: {
+      min: number;
+      max: number;
+    };
     sizes: Array<string>;
   };
 }
