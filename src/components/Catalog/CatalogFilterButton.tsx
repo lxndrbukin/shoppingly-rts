@@ -23,7 +23,7 @@ export default function CatalogFilterButton({
   return (
     <input
       type='submit'
-      className={`filter-btn ${isActive ? 'active' : ''}`}
+      className={`filter-sizes-btn ${isActive ? 'active' : ''}`}
       onClick={() => handleClick(value)}
       value={value}
     />

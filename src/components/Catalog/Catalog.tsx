@@ -36,14 +36,15 @@ export default function Catalog(): JSX.Element {
         return <CatalogItem key={item.id} {...item} />;
       });
 
-    content = <div className='catalog-items'>{items}</div>;
+    content = (
+      <div className='catalog-items'>
+        <h5 className='catalog-items-header'>
+          {catalogItems.length} product(s) found
+        </h5>
+        <div className='catalog-items-grid'>{items}</div>
+      </div>
+    );
   }
 
-  return (
-    <section className='catalog'>
-      <h5 className='catalog-header'>{catalogItems.length} product(s) found</h5>
-      <CatalogFilter />
-      {content}
-    </section>
-  );
+  return <section className='catalog'>{content}</section>;
 }
