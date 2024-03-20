@@ -6,8 +6,8 @@ const initialState: CatalogProps = {
   catalogItems: [],
   filter: {
     price: {
-      min: 0,
-      max: 0
+      min: undefined,
+      max: undefined
     },
     sizes: []
   }
@@ -18,8 +18,12 @@ const catalogSlice = createSlice({
   initialState,
   reducers: {
     setPrice: (state: CatalogProps, action: PayloadAction<{ min?: number, max?: number; }>): void => {
-      if (action.payload.min) state.filter.price.min = action.payload.min;
-      if (action.payload.max) state.filter.price.max = action.payload.max;
+      if (action.payload.min) {
+        state.filter.price.min = action.payload.min;
+      } else state.filter.price.min = undefined;
+      if (action.payload.max) {
+        state.filter.price.max = action.payload.max;
+      } else state.filter.price.max = undefined;
     },
     setSizes: (state: CatalogProps, action: PayloadAction<string>): void => {
       if (state.filter.sizes.includes(action.payload)) {

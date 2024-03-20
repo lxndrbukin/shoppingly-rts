@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch, setPrice } from '../../store';
 import { CatalogFilterPriceInputProps } from './types';
@@ -8,9 +8,15 @@ export default function CatalogFilterPriceInput({
   name,
 }: CatalogFilterPriceInputProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
+  const [value, setValue] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    dispatch(setPrice({ [name]: value }));
+  }, [value, dispatch]);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setPrice({ [e.target.name]: parseInt(e.target.value) }));
+    if (e.target.value === '') return setValue(undefined);
+    setValue(parseInt(e.target.value));
   };
 
   return (

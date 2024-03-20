@@ -14,8 +14,8 @@ export interface CatalogProps {
   catalogItems: Array<CatalogItemProps>;
   filter: {
     price: {
-      min: number;
-      max: number;
+      min: number | undefined;
+      max: number | undefined;
     };
     sizes: Array<string>;
   };

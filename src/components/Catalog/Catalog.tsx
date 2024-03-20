@@ -32,11 +32,18 @@ export default function Catalog(): JSX.Element {
         }
       })
       .filter((item: CatalogItemProps) => {
-        if (filter.price.max === 0) return item;
-        if (filter.price.min && filter.price.max && filter.price.max !== 0) {
-          if (item.price >= filter.price.min && item.price <= filter.price.max)
-            return item;
+        if (filter.price.min) {
+          if (item.price < filter.price.min) {
+            return null;
+          }
         }
+        if (filter.price.max) {
+          if (item.price > filter.price.max) {
+            return null;
+          }
+        }
+        if (filter.price.min === 0 && filter.price.max === 0) return item;
+        return item;
       })
       .map((item: CatalogItemProps) => {
         return <CatalogItem key={item.id} {...item} />;
