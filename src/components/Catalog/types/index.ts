@@ -5,3 +5,8 @@ enum Sizes {
 export interface CatalogFilterButtonProps {
   value: string;
 }
+
+export interface CatalogFilterPriceInputProps {
+  currency: string;
+  name: string;
+}

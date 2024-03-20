@@ -1,3 +1,4 @@
+import CatalogFilterPriceInput from './CatalogFilterPriceInput';
 import CatalogFilterButton from './CatalogFilterButton';
 
 export default function CatalogFilter(): JSX.Element {
@@ -13,14 +14,8 @@ export default function CatalogFilter(): JSX.Element {
       <div className='filter-prices'>
         <h5 className='filter-sub-header'>Price</h5>
         <div className='filter-prices-inputs'>
-          <div className='filter-prices-input-wrapper'>
-            <span>£</span>
-            <input type='number' placeholder='Min' />
-          </div>
-          <div className='filter-prices-input-wrapper'>
-            <span>£</span>
-            <input type='number' placeholder='Max' />
-          </div>
+          <CatalogFilterPriceInput currency='£' name='min' />
+          <CatalogFilterPriceInput currency='£' name='max' />
         </div>
       </div>
       <div className='fitler-sizes'>

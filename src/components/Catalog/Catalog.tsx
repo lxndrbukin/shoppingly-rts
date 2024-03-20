@@ -7,7 +7,6 @@ import {
   AppDispatch,
   getCatalog,
 } from '../../store';
-import CatalogFilter from './CatalogFilter';
 import CatalogItem from './CatalogItem';
 
 export default function Catalog(): JSX.Element {
@@ -30,6 +29,13 @@ export default function Catalog(): JSX.Element {
           return filter.sizes.some((size: string) => item.sizes.includes(size));
         } else {
           return item;
+        }
+      })
+      .filter((item: CatalogItemProps) => {
+        if (filter.price.max === 0) return item;
+        if (filter.price.min && filter.price.max && filter.price.max !== 0) {
+          if (item.price >= filter.price.min && item.price <= filter.price.max)
+            return item;
         }
       })
       .map((item: CatalogItemProps) => {
