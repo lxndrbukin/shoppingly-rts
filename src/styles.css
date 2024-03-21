@@ -13,7 +13,7 @@
   --spacing-sm: 4px;
   --spacing-md: 8px;
   --spacing-lg: 16px;
-  --standard-width: 1140px;
+  --standard-width: 1200px;
 }
 
 /* SCROLLBAR */
@@ -471,19 +471,31 @@ main {
 }
 
 /* MEDIA */
+@media only screen and (max-width: 1300px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-sections {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+}
+
 @media only screen and (max-width: 1000px) {
-  .catalog-items {
+  .catalog-items-grid {
     grid-template-columns: repeat(3, minmax(250px, 1fr));
   }
 }
 @media only screen and (max-width: 750px) {
-  .catalog-items {
+  .catalog-items-grid {
     grid-template-columns: repeat(2, minmax(250px, 1fr));
   }
 }
 
 @media only screen and (max-width: 500px) {
-  .catalog-items {
+  .catalog-items-grid {
     grid-template-columns: minmax(250px, 350px);
     width: fit-content;
   }

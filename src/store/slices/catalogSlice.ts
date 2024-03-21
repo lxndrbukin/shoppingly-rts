@@ -10,7 +10,8 @@ const initialState: CatalogProps = {
       max: undefined
     },
     sizes: []
-  }
+  },
+  isLoaded: false
 };
 
 const catalogSlice = createSlice({
@@ -37,7 +38,11 @@ const catalogSlice = createSlice({
     }
   },
   extraReducers: (builder): void => {
+    builder.addCase(getCatalog.pending, (state: CatalogProps): void => {
+      state.isLoaded = true;
+    });
     builder.addCase(getCatalog.fulfilled, (state: CatalogProps, action: PayloadAction<Array<CatalogItemProps>>): void => {
+      state.isLoaded = false;
       state.catalogItems = action.payload;
     });
   }

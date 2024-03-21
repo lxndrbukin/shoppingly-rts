@@ -12,7 +12,7 @@ import CatalogItem from './CatalogItem';
 export default function Catalog(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
 
-  const { catalogItems, filter } = useSelector(
+  const { catalogItems, filter, isLoaded } = useSelector(
     (state: RootState): CatalogProps => state.catalog
   );
 
@@ -49,10 +49,12 @@ export default function Catalog(): JSX.Element {
         return <CatalogItem key={item.id} {...item} />;
       });
 
+    if (isLoaded) content = 'Loading...';
+
     content = (
       <div className='catalog-items'>
         <h5 className='catalog-items-header'>
-          {catalogItems.length} product(s) found
+          {items.length} product(s) found
         </h5>
         <div className='catalog-items-grid'>{items}</div>
       </div>

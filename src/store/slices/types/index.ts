@@ -19,4 +19,5 @@ export interface CatalogProps {
     };
     sizes: Array<string>;
   };
+  isLoaded: boolean;
 }
