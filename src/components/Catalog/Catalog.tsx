@@ -25,6 +25,15 @@ export default function Catalog(): JSX.Element {
   if (catalogItems.length) {
     const items = catalogItems
       .filter((item: CatalogItemProps) => {
+        if (filter.categories.length !== 0) {
+          return filter.categories.some(
+            (category: string) => item.category === category
+          );
+        } else {
+          return item;
+        }
+      })
+      .filter((item: CatalogItemProps) => {
         if (filter.sizes.length) {
           return filter.sizes.some((size: string) => item.sizes.includes(size));
         } else {

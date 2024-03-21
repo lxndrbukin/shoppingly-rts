@@ -8,11 +8,13 @@ export interface CatalogItemProps {
   img: string;
   name: string;
   price: number;
+  category: string;
 }
 
 export interface CatalogProps {
   catalogItems: Array<CatalogItemProps>;
   filter: {
+    categories: Array<string>,
     price: {
       min: number | undefined;
       max: number | undefined;

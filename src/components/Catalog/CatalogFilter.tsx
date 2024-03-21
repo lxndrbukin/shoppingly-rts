@@ -1,3 +1,4 @@
+import CatalogFilterCheckbox from './CatalogFilterCheckbox';
 import CatalogFilterPriceInput from './CatalogFilterPriceInput';
 import CatalogFilterButton from './CatalogFilterButton';
 
@@ -15,14 +16,8 @@ export default function CatalogFilter(): JSX.Element {
         <div className='filter-categories'>
           <h5 className='filter-sub-header'>Categories</h5>
           <div className='filter-categories-checkboxes'>
-            <div>
-              <input type='checkbox' name='men' value={"Men's fashion"} />{' '}
-              <label htmlFor='men'>Men's Fashion</label>
-            </div>
-            <div>
-              <input type='checkbox' name='men' value={"Women's fashion"} />{' '}
-              <label htmlFor='men'>Men's Fashion</label>
-            </div>
+            <CatalogFilterCheckbox name='men' label="Men's Fashion" />
+            <CatalogFilterCheckbox name='women' label="Women's Fashion" />
           </div>
         </div>
         <div className='filter-prices'>

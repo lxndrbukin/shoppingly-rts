@@ -5,6 +5,7 @@ import { CatalogProps, CatalogItemProps, Slices } from './types';
 const initialState: CatalogProps = {
   catalogItems: [],
   filter: {
+    categories: [],
     price: {
       min: undefined,
       max: undefined
@@ -18,6 +19,14 @@ const catalogSlice = createSlice({
   name: Slices.Catalog,
   initialState,
   reducers: {
+    setCategory: (state: CatalogProps, action: PayloadAction<{ category: string, isChecked: boolean; }>): void => {
+      if (action.payload.isChecked) {
+        state.filter.categories.push(action.payload.category);
+      } else {
+        const changedCategories = state.filter.categories.filter((category) => category !== action.payload.category);
+        state.filter.categories = changedCategories;
+      }
+    },
     setPrice: (state: CatalogProps, action: PayloadAction<{ min?: number, max?: number; }>): void => {
       if (action.payload.min) {
         state.filter.price.min = action.payload.min;
@@ -28,7 +37,7 @@ const catalogSlice = createSlice({
     },
     setSizes: (state: CatalogProps, action: PayloadAction<string>): void => {
       if (state.filter.sizes.includes(action.payload)) {
-        const filteredSizes = state.filter.sizes.filter((size: string) => {
+        const filteredSizes = state.filter.sizes.filter((size: string): boolean => {
           return size !== action.payload;
         });
         state.filter.sizes = filteredSizes;
@@ -49,4 +58,4 @@ const catalogSlice = createSlice({
 });
 
 export default catalogSlice.reducer;
-export const { setSizes, setPrice } = catalogSlice.actions;
+export const { setSizes, setPrice, setCategory } = catalogSlice.actions;

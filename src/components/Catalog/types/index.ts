@@ -10,3 +10,8 @@ export interface CatalogFilterPriceInputProps {
   currency: string;
   name: string;
 }
+
+export interface CatalogFilterCheckboxProps {
+  name: string;
+  label: string;
+}
